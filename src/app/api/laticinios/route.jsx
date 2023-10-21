@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  
+   
     const queijos = [
         {"id":1,"nome":"Queijo Minas","preco":20.0,"peso":1.0,"tipo":"Minas"},  
         {"id":2,"nome":"Queijo Prato","preco":25.0,"peso":1.0,"tipo":"Prato"},
