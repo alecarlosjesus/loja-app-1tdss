@@ -6,6 +6,7 @@ export default function Cabecalho() {
   return (
     <header className='cabecalho'>
         <nav>
+          <Link href="/login">LOGIN</Link>
           <Link href="/produtos/calca">CALCA</Link>
           <Link href="/produtos/camisa">CAMISA</Link>
           <Link href="/produtos/meia">MEIA</Link>

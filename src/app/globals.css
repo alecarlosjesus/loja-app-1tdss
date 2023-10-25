@@ -11,6 +11,23 @@
         @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
     }
 
+    .form-login{
 
+      & form{
+        @apply m-auto w-9/12 bg-slate-700 text-white font-bold py-2 px-4 rounded;
+
+        & label{
+          @apply block w-9/12 py-2 m-auto text-white font-bold rounded;
+        }
+        & input{
+          @apply m-auto w-9/12 block bg-slate-700 border border-red-700 text-white font-bold py-2 px-4 rounded;
+        }
+
+        & button{
+          @apply mt-2 m-auto w-5/12 block bg-blue-500 text-white font-bold py-3 rounded hover:bg-blue-700 transition-all duration-300 ease-out;
+        }
+      }
+    }
+    
 }
 
