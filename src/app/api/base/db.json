@@ -1,0 +1,40 @@
+
+{
+    "usuarios":[
+        {
+            "id":1,
+            "login":"Juan",
+            "nome":"Perez",
+            "avatar":"https://avatars.githubusercontent.com/u/399777?v=4",
+            "email":"profalexandre.jesus@fiap.com.br"   
+        },
+        {
+            "id":2,
+            "login":"Maria",
+            "nome":"Silva",
+            "avatar":"https://avatars.githubusercontent.com/u/399777?v=4",
+            "email":"profmsilva@fiap.com.br"   
+        },
+        {
+            "id":3,
+            "login":"Joao",
+            "nome":"Santos",
+            "avatar":"https://avatars.githubusercontent.com/u/399777?v=4",
+            "email":"profjsantos@fiap.com.br"   
+        },
+        {
+            "id":4,
+            "login":"Pedro",
+            "nome":"Souza",
+            "avatar":"https://avatars.githubusercontent.com/u/399777?v=4",
+            "email":"profpsouza@fiap.com.br"   
+        },
+        {
+            "id":5,
+            "login":"Ana",
+            "nome":"Oliveira",
+            "avatar":"https://avatars.githubusercontent.com/u/399777?v=4",
+            "email":"profaoliv@fiap.com.br"   
+        }
+    ]
+}
