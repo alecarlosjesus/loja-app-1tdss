@@ -1,7 +1,4 @@
 import { NextResponse } from "next/server";
-
-export async function GET() {
-   
     const queijos = [
         {"id":1,"nome":"Queijo Minas","preco":20.0,"peso":1.0,"tipo":"Minas"},  
         {"id":2,"nome":"Queijo Prato","preco":25.0,"peso":1.0,"tipo":"Prato"},
@@ -15,5 +12,17 @@ export async function GET() {
         {"id":10,"nome":"Queijo Cheddar","preco":65.0,"peso":1.0,"tipo":"Cheddar"}
     ];  
 
-    return  NextResponse.json(queijos);
+export async function GET(request,{params}) {
+    
+    console.log("Valor do parâmetro id: ", params.id);
+    
+    const id = params.id;
+    
+    if(id > 0){
+        const queijo = queijos.find(queijo => queijo.id == id);
+        return  NextResponse.json(queijo);    
+    }else{
+
+        return  id == 0 ? NextResponse.json(queijos) : NextResponse.redirect("http://localhost:3000/");
+    }
 }
