@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -10,6 +11,7 @@ export default function LoginUsers() {
   const navigate = useRouter();
  
   const [usuario, setUsuario] = useState({
+    info: "login",
     email: "",
     senha: "",
   });
@@ -98,6 +100,9 @@ export default function LoginUsers() {
             </div>
             <div>
               <button>LOGIN</button>
+            </div>
+            <div className="p-5 m-auto w-2/4">
+              <p>Se você não é cadastrado em nosso sistema, <Link href="/cad-user" className="text-amber-500 hover:text-amber-200">CLIQUE AQUI</Link> para se registrar.</p>
             </div>
           </fieldset>
         </form>
