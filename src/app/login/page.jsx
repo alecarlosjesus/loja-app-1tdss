@@ -1,10 +1,13 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function LoginUsers() {
   //Mensage de STATUS!
   const [msg, setMsg] = useState("");
 
+  //Redirecionamento:
+  const navigate = useRouter();
  
   const [usuario, setUsuario] = useState({
     email: "",
@@ -43,6 +46,8 @@ export default function LoginUsers() {
             setMsg("Login efetuado com Sucesso!!");
             setTimeout(()=>{
                 setMsg("");
+                //Redirecionando para a página HOME!
+                navigate.push("/");
             },5000);
 
         }else{
