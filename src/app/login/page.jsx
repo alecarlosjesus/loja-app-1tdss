@@ -4,6 +4,7 @@ import { useState } from "react";
 export default function LoginUsers() {
   //Mensage de STATUS!
   const [msg, setMsg] = useState("");
+
  
   const [usuario, setUsuario] = useState({
     email: "",
@@ -34,19 +35,23 @@ export default function LoginUsers() {
       );
 
       if (response.ok) {
+        
         const result = await response.json();
-        console.log("VALIDADO!!!!");
-        if (result.status == "ok") {
+          console.log("VALIDADO!!!!");
+        if (result.status) {
             
             setMsg("Login efetuado com Sucesso!!");
             setTimeout(()=>{
                 setMsg("");
             },5000);
+
         }else{
+            
             setMsg("Login ou Senha incorretos!");
             setTimeout(()=>{
                 setMsg("");
             },5000);
+
         }
       }
     } catch (error) {
@@ -58,7 +63,7 @@ export default function LoginUsers() {
     <div>
       <h1>IDENTIFICAÇÃO DOS USUÁRIOS</h1>
 
-        <h2 className="bg-red-300 text-red-700 text-center text-lg">{msg}</h2>
+        <h2 className={msg == "Login efetuado com Sucesso!!" ? "msg-success-login":"msg-error-login"}>{msg}</h2>
 
       <div className="form-login">
         <form onSubmit={handleSubmit}>

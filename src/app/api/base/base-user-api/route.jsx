@@ -18,15 +18,19 @@ export async function POST(request,response){
     //OBJETO USUÁRIO DO REQUEST
     const usuario = await request.json();
 
-    
+    const userValidado = body.usuarios.find((user)=> user.email == usuario.email && user.senha == usuario.senha);
 
-    for (let x = 0; x < body.usuarios.length; x++) {
-        const u = body.usuarios[x];
-        // console.log("USUÁRIO DA BASE : ", u.name);
-        if(u.email == usuario.email && u.senha == usuario.senha){
-            return NextResponse.json({"status":"ok"});
-        }
+    if(!userValidado){
+        return NextResponse.json({"status":false});
     }
 
-    return NextResponse.json({"status":"error"});
+    return NextResponse.json({"status":true});
 }
+
+    // for (let x = 0; x < body.usuarios.length; x++) {
+    //     const u = body.usuarios[x];
+    //     // console.log("USUÁRIO DA BASE : ", u.name);
+    //     if(u.email == usuario.email && u.senha == usuario.senha){
+    //         return NextResponse.json({"status":true});
+    //     }
+    // }

@@ -28,6 +28,15 @@
         }
       }
     }
+
+    .msg-error-login{
+      @apply bg-red-300 text-red-700 text-center text-lg;
+    }
+
+    .msg-success-login{
+      @apply bg-green-300 text-green-700 text-center text-lg;
+    }
+
     
 }
 
