@@ -3,15 +3,16 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function LoginUsers() {
+export default function CadUsers({ params }) {
   //Mensage de STATUS!
   const [msg, setMsg] = useState("");
 
   //Redirecionamento:
   const navigate = useRouter();
- 
+
   const [usuario, setUsuario] = useState({
-    info: "login",
+    info: "cad",
+    nome: "",
     email: "",
     senha: "",
   });
@@ -24,12 +25,10 @@ export default function LoginUsers() {
 
   //Envio das informações
   const handleSubmit = async (e) => {
-
     e.preventDefault();
 
     try {
-      const response = await fetch(
-        "http://localhost:3000/api/base/base-user-api",
+      const response = await fetch("http://localhost:3000/api/base/base-user-api",
         {
           method: "POST",
           headers: {
@@ -40,34 +39,21 @@ export default function LoginUsers() {
       );
 
       if (response.ok) {
-        
         const result = await response.json();
-          console.log("VALIDADO!!!!");
         if (result.status) {
-            
-                     //Gerando o TOKEN de acesso!
-          const token = Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2);
 
-          //Armazenando o TOKEN no SessionStorage!
-          sessionStorage.setItem("token-user", token);
+          setMsg("Cadastro efetuado com Sucesso!!");
+          setTimeout(() => {
+            setMsg("");
+            //Redirecionando para a página HOME!
+            navigate.push("/");
+          }, 5000);
 
-          //Armazenando o objeto USUÁRIO no SessionStorage!
-          sessionStorage.setItem("user-info", JSON.stringify(result.user));
-
-            setMsg("Login efetuado com Sucesso!!");
-            setTimeout(()=>{
-                setMsg("");
-                //Redirecionando para a página HOME!
-                window.location.href = "/";
-            },5000);
-
-        }else{
-            
-            setMsg("Login ou Senha incorretos!");
-            setTimeout(()=>{
-                setMsg("");
-            },5000);
-
+        } else {
+          setMsg("Ocorreu um erro ao efetuar o cadastro!");
+          setTimeout(() => {
+            setMsg("");
+          }, 5000);
         }
       }
     } catch (error) {
@@ -77,14 +63,25 @@ export default function LoginUsers() {
 
   return (
     <div>
-      <h1>IDENTIFICAÇÃO DOS USUÁRIOS</h1>
+      <h1>CADATRO DE USUÁRIOS</h1>
 
-        <h2 className={msg == "Login efetuado com Sucesso!!" ? "msg-success-login":"msg-error-login"}>{msg}</h2>
+      <h2 className={msg == "Cadastro efetuado com Sucesso!!" ? "msg-success-login" : "msg-error-login" }>{msg}</h2>
 
       <div className="form-login">
         <form onSubmit={handleSubmit}>
           <fieldset>
-            <legend>LOGIN</legend>
+            <legend>CADASTRO</legend>
+            <div>
+              <label htmlFor="idNome">Nome:</label>
+              <input
+                type="text"
+                name="nome"
+                id="idNome"
+                placeholder="Digite seu Nome completo."
+                value={usuario.nome}
+                onChange={handleChange}
+              />
+            </div>
             <div>
               <label htmlFor="idEmail">Email:</label>
               <input
@@ -108,10 +105,19 @@ export default function LoginUsers() {
               />
             </div>
             <div>
-              <button>LOGIN</button>
+              <button>CADASTRAR</button>
             </div>
             <div className="p-5 m-auto w-2/4">
-              <p>Se você não é cadastrado em nosso sistema, <Link href="/login/cad" className="text-amber-500 hover:text-amber-200">CLIQUE AQUI</Link> para se registrar.</p>
+              <p>
+                Se você ja é cadastrado em nosso sistema,{" "}
+                <Link
+                  href="/login"
+                  className="text-amber-500 hover:text-amber-200"
+                >
+                  CLIQUE AQUI
+                </Link>{" "}
+                para acessar nosso sistema.
+              </p>
             </div>
           </fieldset>
         </form>

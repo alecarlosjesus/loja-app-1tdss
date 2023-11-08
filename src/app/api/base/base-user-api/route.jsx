@@ -56,14 +56,18 @@ export async function POST(request, response) {
     //Chamando a função de validação do login.
     const userValidado = await handleLogin(email, senha);
     if (!userValidado) {
-      return NextResponse.json({ status: false });
+      return NextResponse.json({ status: false});
+    }else{
+      return NextResponse.json({ status: true, user: userValidado });
     }
   }else if (info == "cad") {
     //Chamando a função de cadastro do usuário.
     const newUser = await handleCad(email, senha, nome);
     if (!newUser) {
       return NextResponse.json({ status: false });
-    }   
+    }else{
+      return NextResponse.json({ status: true, user: newUser });
+    }
   }
-  return NextResponse.json({ status: true });
+  
 }

@@ -300,6 +300,12 @@
       "email": "reeddocarmo2901@yahoo.edu",
       "senha": "molestie"
     },
-    { "id": 51, "nome": "Julinha", "email": "juju@email.com", "senha": "xuxu" }
+    { "id": 51, "nome": "Julinha", "email": "juju@email.com", "senha": "xuxu" },
+    {
+      "id": 52,
+      "nome": "Alexandre Carlos",
+      "email": "ale@fiap.com",
+      "senha": "123"
+    }
   ]
 }
