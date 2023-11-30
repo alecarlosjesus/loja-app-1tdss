@@ -5,7 +5,7 @@ header {
 header nav {
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items: left;
 }
 header nav a {
   display: block;
@@ -19,4 +19,4 @@ header nav a {
 header nav a:hover {
   background-color: #fff;
   color: #000000;
-}/*# sourceMappingURL=Cabecalho.css.map */
+}

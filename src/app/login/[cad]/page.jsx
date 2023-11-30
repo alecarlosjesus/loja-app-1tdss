@@ -4,28 +4,12 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function CadUsers({ params }) {
-  //Mensage de STATUS!
   const [msg, setMsg] = useState("");
-
-  //Redirecionamento:
   const navigate = useRouter();
-
-  const [usuario, setUsuario] = useState({
-    info: "cad",
-    nome: "",
-    email: "",
-    senha: "",
-  });
-
-  //Preenchimento dos Campos!
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUsuario({ ...usuario, [name]: value });
-  };
-
-  //Envio das informações
+  const [usuario, setUsuario] = useState({info: "cad",nome: "",email: "",senha: "",});
+  const handleChange = (e) => {const { name, value } = e.target;setUsuario({ ...usuario, [name]: value });};
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
     try {
       const response = await fetch("http://localhost:3000/api/base/base-user-api",
@@ -42,17 +26,13 @@ export default function CadUsers({ params }) {
         const result = await response.json();
         if (result.status) {
 
-          setMsg("Cadastro efetuado com Sucesso!!");
-          setTimeout(() => {
-            setMsg("");
-            //Redirecionando para a página HOME!
-            navigate.push("/");
-          }, 5000);
+          setMsg("Seu cadastro foi efetuado com êxito!!");
+          setTimeout(() => {setMsg("");navigate.push("/");
+        }, 5000);
 
         } else {
-          setMsg("Ocorreu um erro ao efetuar o cadastro!");
-          setTimeout(() => {
-            setMsg("");
+          setMsg("OPS!! Ocorreu um erro ao tentar efetuar seu cadastro");
+          setTimeout(() => {setMsg("");
           }, 5000);
         }
       }
@@ -65,7 +45,7 @@ export default function CadUsers({ params }) {
     <div>
       <h1>CADATRO DE USUÁRIOS</h1>
 
-      <h2 className={msg == "Cadastro efetuado com Sucesso!!" ? "msg-success-login" : "msg-error-login" }>{msg}</h2>
+      <h2 className={msg == "Seu cadastro foi efetuado com êxito" ? "msg-success-login" : "msg-error-login" }>{msg}</h2>
 
       <div className="form-login">
         <form onSubmit={handleSubmit}>
@@ -77,7 +57,7 @@ export default function CadUsers({ params }) {
                 type="text"
                 name="nome"
                 id="idNome"
-                placeholder="Digite seu Nome completo."
+                placeholder="Por favor, insira seu nome completo"
                 value={usuario.nome}
                 onChange={handleChange}
               />
@@ -88,7 +68,7 @@ export default function CadUsers({ params }) {
                 type="email"
                 name="email"
                 id="idEmail"
-                placeholder="Digite seu email."
+                placeholder="Por favor, insira seu email"
                 value={usuario.email}
                 onChange={handleChange}
               />
@@ -99,7 +79,7 @@ export default function CadUsers({ params }) {
                 type="password"
                 name="senha"
                 id="idSenha"
-                placeholder="Digite sua senha."
+                placeholder="Por favor, insira sua senha"
                 value={usuario.senha}
                 onChange={handleChange}
               />
@@ -109,7 +89,7 @@ export default function CadUsers({ params }) {
             </div>
             <div className="p-5 m-auto w-2/4">
               <p>
-                Se você ja é cadastrado em nosso sistema,{" "}
+                Caso você ja possua cadastro em nosso sistema,{" "}
                 <Link
                   href="/login"
                   className="text-amber-500 hover:text-amber-200"

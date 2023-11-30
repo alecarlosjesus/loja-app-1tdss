@@ -1,7 +1,7 @@
 
 header{
-    background-color: #000000;
-    height: 80px;
+    background-color: #8c00ff;
+    height: 100px;
     color: #fff;
 
     nav{
@@ -11,15 +11,15 @@ header{
         a{
             display: block;
             text-decoration: none;
-            color: #fff;
+            color: #ffffff;
             font-weight: bold;
-            font-size: 1.5rem;
-            padding: 2% 0;
+            font-size: 2.0rem;
+            padding: 1% 0;
             transition: ease-out 300ms;
 
             &:hover{
-                background-color: #fff;
-                color: #000000;
+                background-color: #000000;
+                color: #8c00ff;
             }
         }
     }

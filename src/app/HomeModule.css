@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1 {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  h2 {
+    text-align: center;
+    color: rgb(255, 0, 0); 
+  }
+  
+  figure {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  figcaption {
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  
+  @media (max-width: 640px) {
+    figure {
+      margin: 10px 0;
+    }
+  }
+  
