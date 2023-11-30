@@ -4,68 +4,41 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function LoginUsers() {
-  //Mensage de STATUS!
   const [msg, setMsg] = useState("");
-
-  //Redirecionamento:
   const navigate = useRouter();
- 
-  const [usuario, setUsuario] = useState({
-    info: "login",
-    email: "",
-    senha: "",
-  });
+  const [usuario, setUsuario] = useState({info: "login",email: "",senha: "",});
 
   //Preenchimento dos Campos!
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUsuario({ ...usuario, [name]: value });
+  const handleChange = (e) => {const { name, value } = e.target;setUsuario({ ...usuario, [name]: value });
   };
 
   //Envio das informações
   const handleSubmit = async (e) => {
-
     e.preventDefault();
 
     try {
-      const response = await fetch(
-        "http://localhost:3000/api/base/base-user-api",
+      const response = await fetch("http://localhost:3000/api/base/base-user-api",
         {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          method: "POST",headers: {"Content-Type": "application/json",},
           body: JSON.stringify(usuario),
         }
       );
 
       if (response.ok) {
-        
         const result = await response.json();
           console.log("VALIDADO!!!!");
         if (result.status) {
-            
-                     //Gerando o TOKEN de acesso!
           const token = Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2);
-
-          //Armazenando o TOKEN no SessionStorage!
           sessionStorage.setItem("token-user", token);
-
-          //Armazenando o objeto USUÁRIO no SessionStorage!
           sessionStorage.setItem("user-info", JSON.stringify(result.user));
-
             setMsg("Login efetuado com Sucesso!!");
-            setTimeout(()=>{
-                setMsg("");
-                //Redirecionando para a página HOME!
-                window.location.href = "/";
+            setTimeout(()=>{setMsg("");window.location.href = "/";
             },5000);
 
         }else{
             
-            setMsg("Login ou Senha incorretos!");
-            setTimeout(()=>{
-                setMsg("");
+            setMsg("OPS!! Verifique se seus dados estaão corretos, Login ou Senha incorretos!");
+            setTimeout(()=>{setMsg("");
             },5000);
 
         }
@@ -79,7 +52,7 @@ export default function LoginUsers() {
     <div>
       <h1>IDENTIFICAÇÃO DOS USUÁRIOS</h1>
 
-        <h2 className={msg == "Login efetuado com Sucesso!!" ? "msg-success-login":"msg-error-login"}>{msg}</h2>
+        <h2 className={msg == "Seu login foi efetuado com êxito" ? "msg-success-login":"msg-error-login"}>{msg}</h2>
 
       <div className="form-login">
         <form onSubmit={handleSubmit}>
@@ -91,7 +64,7 @@ export default function LoginUsers() {
                 type="email"
                 name="email"
                 id="idEmail"
-                placeholder="Digite seu email."
+                placeholder="Por favor, insira seu email"
                 value={usuario.email}
                 onChange={handleChange}
               />
@@ -102,7 +75,7 @@ export default function LoginUsers() {
                 type="password"
                 name="senha"
                 id="idSenha"
-                placeholder="Digite sua senha."
+                placeholder="Por favor, insira sua senha"
                 value={usuario.senha}
                 onChange={handleChange}
               />
@@ -111,7 +84,7 @@ export default function LoginUsers() {
               <button>LOGIN</button>
             </div>
             <div className="p-5 m-auto w-2/4">
-              <p>Se você não é cadastrado em nosso sistema, <Link href="/login/cad" className="text-amber-500 hover:text-amber-200">CLIQUE AQUI</Link> para se registrar.</p>
+              <p>Caso você ainda não possua cadastro em nosso sistema, <Link href="/login/cad" className="text-amber-500 hover:text-amber-200">CLIQUE AQUI</Link> para criar seu cadastro agora mesmo.</p>
             </div>
           </fieldset>
         </form>
